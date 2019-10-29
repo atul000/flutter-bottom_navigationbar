@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(length: 2, vsync: this);
+    tabController = new TabController(length: 3, vsync: this);
   }
 
   @override
@@ -47,12 +47,19 @@ class _HomePageState extends State<HomePage>
               ),
               new Tab(
                 icon: new Icon(Icons.email),
+              ),
+              new Tab(
+                icon: new Icon(Icons.search),
               )
             ],
           ),
         ),
         body: new TabBarView(
-          children: <Widget>[new NewPage("First"), new NewPage("Second")],
+          children: <Widget>[
+            new NewPage("First"),
+            new NewPage("Second"),
+            new NewPage("three")
+          ],
           controller: tabController,
         ),
         floatingActionButton: new FloatingActionButton(
