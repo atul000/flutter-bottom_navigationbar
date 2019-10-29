@@ -1,6 +1,6 @@
 # bottom_navigationbar
 
-A new Flutter project.
+![flutter](nav.jpg "flutter")
 
 ## Getting Started
 
