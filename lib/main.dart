@@ -37,26 +37,28 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(title: new Text("Bottom Nav")),
-      body: new TabBarView(
-        children: <Widget>[new NewPage("First"), new NewPage("Second")],
-        controller: tabController,
-      ),
-      bottomNavigationBar: new Material(
-        color: Colors.blue,
-        child: new TabBar(
-          controller: tabController,
-          tabs: <Widget>[
-            new Tab(
-              icon: new Icon(Icons.favorite),
-            ),
-            new Tab(
-              icon: new Icon(Icons.email),
-            )
-          ],
+        appBar: new AppBar(
+          title: new Text("Bottom Nav"),
+          bottom: new TabBar(
+            controller: tabController,
+            tabs: <Widget>[
+              new Tab(
+                icon: new Icon(Icons.favorite),
+              ),
+              new Tab(
+                icon: new Icon(Icons.email),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+        body: new TabBarView(
+          children: <Widget>[new NewPage("First"), new NewPage("Second")],
+          controller: tabController,
+        ),
+        floatingActionButton: new FloatingActionButton(
+          child: new Icon(Icons.add),
+          onPressed: () => print("pressed"),
+        ));
   }
 }
 
