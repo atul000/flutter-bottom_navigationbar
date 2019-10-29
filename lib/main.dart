@@ -18,35 +18,58 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int current_step = 0;
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
 
-  List<Step> my_steps = [
-    new Step(
-        title: new Text("Step 1"),
-        content: new Text("this is step 1"),
-        isActive: true),
-    new Step(
-        title: new Text("Step 2"),
-        content: new Text("this is step 2"),
-        isActive: true),
-    new Step(
-        title: new Text("Step 3"),
-        content: new Text("this is step 3"),
-        isActive: true),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    tabController = new TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text("Bottom Nav")),
-        body: new Container(
-          child: new Stepper(
-            steps: my_steps,
-            currentStep: this.current_step,
-            type: StepperType.vertical,
-          ),
-        ));
+      appBar: new AppBar(title: new Text("Bottom Nav")),
+      body: new TabBarView(
+        children: <Widget>[new NewPage("First"), new NewPage("Second")],
+        controller: tabController,
+      ),
+      bottomNavigationBar: new Material(
+        color: Colors.blue,
+        child: new TabBar(
+          controller: tabController,
+          tabs: <Widget>[
+            new Tab(
+              icon: new Icon(Icons.favorite),
+            ),
+            new Tab(
+              icon: new Icon(Icons.email),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NewPage extends StatelessWidget {
+  final String title;
+  NewPage(this.title);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: new Center(
+        child: new Text(title),
+      ),
+    );
   }
 }
 
@@ -55,7 +78,6 @@ class _HomePageState extends State<HomePage> {
 //     content: new Text("Dialog is up..", style: new TextStyle(fontSize: 15.0)),
 //     title: new Text("hello"),
 //   );
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return new Container(
