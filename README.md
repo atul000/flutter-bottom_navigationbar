@@ -1,6 +1,6 @@
 # bottom_navigationbar
 
-![flutter](one.jpg "flutter")
+![flutter](nav.jpg "flutter")
 
 ## Getting Started
 
